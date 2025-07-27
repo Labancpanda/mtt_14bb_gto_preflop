@@ -4,37 +4,93 @@
   <meta charset="UTF-8">
   <title>Naropa weboldala</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 40px; }
-    table { border-collapse: collapse; width: 100%; }
-    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
-    th { background-color: #f2f2f2; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 40px;
+      background: #f0f4f8;
+      color: #333;
+    }
+
+    h1, h2 {
+      color: #2c3e50;
+      text-align: center;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 30px;
+      text-align: center;
+      font-size: 1.1em;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    thead {
+      background-color: #34495e;
+      color: white;
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    tbody tr:hover {
+      background-color: #eef2f7;
+    }
+
+    td.positive {
+      color: #27ae60;
+      font-weight: bold;
+    }
+
+    td.negative {
+      color: #c0392b;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h1>Naropa weboldala</h1>
-  <p>Az alábbi táblázat a legnagyobb súlyú S&P 500 vállalatokat mutatja be a piaci érték (market cap), ár/nyereség arány (P/E ratio), valamint a 2024-es árbevétel- és eredménynövekedési ráták alapján.</p>
-  <h2>Top 10 S&P 500 vállalat kulcs mutatók szerint</h2>
+  <p>Az alábbi táblázat a legnagyobb súlyú S&P 500 vállalatokat mutatja be a piaci érték, ár/nyereség arány, valamint a 2024-es árbevétel- és eredménynövekedés alapján.</p>
+
+  <h2>Top 10 S&P 500 vállalat kulcs mutatók szerint</h2>
+
   <table>
     <thead>
       <tr>
         <th>Vállalat (ticker)</th>
-        <th>Piaci érték (USD billió)</th>
+        <th>Piaci érték (USD billió)</th>
         <th>P/E arány (TTM)</th>
         <th>2024-es árbevétel-növekedés</th>
         <th>2024-es eredmény-növekedés</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>NVIDIA (NVDA)</td><td>4.231</td><td>55.2</td><td>114.2%</td><td>147.32%</td></tr>
-      <tr><td>Microsoft (MSFT)</td><td>3.818</td><td>39.8</td><td>15.04%</td><td>12.25%</td></tr>
-      <tr><td>Apple (AAPL)</td><td>3.194</td><td>33.3</td><td>2.61%</td><td>5%</td></tr>
-      <tr><td>Amazon (AMZN)</td><td>2.457</td><td>37.0</td><td>10.99%</td><td>74.33%</td></tr>
-      <tr><td>Meta Platforms (META)</td><td>1.791</td><td>27.3</td><td>21.94%</td><td>49.1%</td></tr>
-      <tr><td>Broadcom (AVGO)</td><td>1.364</td><td>106</td><td>40.3%</td><td>21.86%</td></tr>
-      <tr><td>Alphabet Class A (GOOGL)</td><td>2.344</td><td>20.57</td><td>13.19%</td><td>34.51%</td></tr>
-      <tr><td>Alphabet Class C (GOOG)</td><td>2.340</td><td>21.4</td><td>13.87%</td><td>39.59%</td></tr>
-      <tr><td>Tesla (TSLA)</td><td>1.019</td><td>159</td><td>0.95%</td><td>-4.48%</td></tr>
-      <tr><td>Berkshire Hathaway (BRK.B)</td><td>1.046</td><td>14.1</td><td>-3.44%</td><td>-7.66%</td></tr>
+      <tr><td>NVIDIA (NVDA)</td><td>4.231</td><td>55.2</td><td class="positive">114.2%</td><td class="positive">147.32%</td></tr>
+      <tr><td>Microsoft (MSFT)</td><td>3.818</td><td>39.8</td><td class="positive">15.04%</td><td class="positive">12.25%</td></tr>
+      <tr><td>Apple (AAPL)</td><td>3.194</td><td>33.3</td><td class="positive">2.61%</td><td class="positive">5%</td></tr>
+      <tr><td>Amazon (AMZN)</td><td>2.457</td><td>37.0</td><td class="positive">10.99%</td><td class="positive">74.33%</td></tr>
+      <tr><td>Meta Platforms (META)</td><td>1.791</td><td>27.3</td><td class="positive">21.94%</td><td class="positive">49.1%</td></tr>
+      <tr><td>Broadcom (AVGO)</td><td>1.364</td><td>106</td><td class="positive">40.3%</td><td class="positive">21.86%</td></tr>
+      <tr><td>Alphabet Class A (GOOGL)</td><td>2.344</td><td>20.57</td><td class="positive">13.19%</td><td class="positive">34.51%</td></tr>
+      <tr><td>Alphabet Class C (GOOG)</td><td>2.340</td><td>21.4</td><td class="positive">13.87%</td><td class="positive">39.59%</td></tr>
+      <tr><td>Tesla (TSLA)</td><td>1.019</td><td>159</td><td class="positive">0.95%</td><td class="negative">-4.48%</td></tr>
+      <tr><td>Berkshire Hathaway (BRK.B)</td><td>1.046</td><td>14.1</td><td class="negative">-3.44%</td><td class="negative">-7.66%</td></tr>
     </tbody>
   </table>
 </body>
