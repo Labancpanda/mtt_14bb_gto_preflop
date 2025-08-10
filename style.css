@@ -31,82 +31,54 @@ h1 {
     margin-bottom: 25px;
 }
 
-.input-section {
-    display: flex;
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-#hand-input {
-    flex-grow: 1;
+.hand-input-field {
     padding: 10px;
     border: 2px solid #4f545c;
     border-radius: 5px;
     background-color: #40444b;
     color: #ffffff;
     font-size: 16px;
+    text-align: center;
 }
 
-#hand-input:focus {
+.hand-input-field:focus {
     outline: none;
     border-color: #7289da;
 }
 
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 16px;
-}
-
-#add-hand-btn {
-    background-color: #7289da;
-}
-#add-hand-btn:hover {
-    background-color: #677bc4;
-}
-
-#reset-btn {
-    background-color: #f04747;
-}
-#reset-btn:hover {
-    background-color: #d84040;
-}
-
-#selected-hands-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    min-height: 30px;
+.action-section {
+    text-align: center;
     margin-bottom: 25px;
 }
 
-.hand-tag {
-    background-color: #4f545c;
-    padding: 5px 10px;
+#generate-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 20px;
+    border: none;
     border-radius: 5px;
-    display: flex;
-    align-items: center;
+    color: #ffffff;
+    background-color: #43b581;
     font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 18px;
 }
 
-.remove-hand-btn {
-    margin-left: 8px;
-    color: #99aab5;
-    cursor: pointer;
-    font-weight: bold;
-}
-.remove-hand-btn:hover {
-    color: #ffffff;
+#generate-btn:hover {
+    background-color: #3aa072;
 }
 
 #chart-container {
     display: grid;
-    grid-template-columns: 60px repeat(6, 1fr);
+    grid-template-columns: 80px repeat(6, 1fr);
     gap: 5px;
     margin-bottom: 20px;
 }
@@ -119,18 +91,20 @@ button {
     background-color: #40444b;
     min-height: 40px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .chart-cell {
     display: flex;
     flex-direction: column;
     padding: 0;
-    overflow: hidden; /* Fontos a border-radius miatt */
+    overflow: hidden;
 }
 
 .strategy-bar {
     width: 100%;
-    flex-grow: 1;
 }
 
 .legend {
@@ -139,6 +113,7 @@ button {
     gap: 20px;
     padding-top: 15px;
     border-top: 1px solid #40444b;
+    margin-top: 20px;
 }
 
 .legend-item {
