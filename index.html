@@ -11,32 +11,49 @@
 </head>
 <body>
     <div class="container">
-        <h1>14bb GTO Stratégia Elemző</h1>
-        <p class="subtitle">Írd be a kezeket a mezőkbe (pl. KQs, 88, AJo), majd generáld az ábrát.</p>
+        <div id="main-content">
+            <h1>14bb GTO Stratégia Elemző</h1>
+            <p class="subtitle">Írd be a kezeket a mezőkbe, majd generáld az ábrát a tanuláshoz.</p>
 
-        <div class="input-grid">
-            <!-- JAVÍTVA: Most már 12 beviteli mező van -->
-            <input type="text" class="hand-input-field" placeholder="Kéz 1">
-            <input type="text" class="hand-input-field" placeholder="Kéz 2">
-            <input type="text" class="hand-input-field" placeholder="Kéz 3">
-            <input type="text" class="hand-input-field" placeholder="Kéz 4">
-            <input type="text" class="hand-input-field" placeholder="Kéz 5">
-            <input type="text" class="hand-input-field" placeholder="Kéz 6">
-            <input type="text" class="hand-input-field" placeholder="Kéz 7">
-            <input type="text" class="hand-input-field" placeholder="Kéz 8">
-            <input type="text" class="hand-input-field" placeholder="Kéz 9">
-            <input type="text" class="hand-input-field" placeholder="Kéz 10">
-            <input type="text" class="hand-input-field" placeholder="Kéz 11">
-            <input type="text" class="hand-input-field" placeholder="Kéz 12">
-        </div>
-        
-        <div class="action-section">
-            <button id="generate-btn">Ábra generálása</button>
+            <div class="input-grid">
+                <!-- 12 beviteli mező -->
+                <input type="text" class="hand-input-field" placeholder="Kéz 1">
+                <input type="text" class="hand-input-field" placeholder="Kéz 2">
+                <input type="text" class="hand-input-field" placeholder="Kéz 3">
+                <input type="text" class="hand-input-field" placeholder="Kéz 4">
+                <input type="text" class="hand-input-field" placeholder="Kéz 5">
+                <input type="text" class="hand-input-field" placeholder="Kéz 6">
+                <input type="text" class="hand-input-field" placeholder="Kéz 7">
+                <input type="text" class="hand-input-field" placeholder="Kéz 8">
+                <input type="text" class="hand-input-field" placeholder="Kéz 9">
+                <input type="text" class="hand-input-field" placeholder="Kéz 10">
+                <input type="text" class="hand-input-field" placeholder="Kéz 11">
+                <input type="text" class="hand-input-field" placeholder="Kéz 12">
+            </div>
+            
+            <div class="action-section">
+                <button id="generate-btn">Ábra generálása</button>
+                <button id="practice-btn" class="secondary-btn" disabled>Gyakorlás</button>
+            </div>
+
+            <div id="chart-container"></div>
         </div>
 
-        <div id="chart-container">
-            <!-- Az ábra itt jön létre dinamikusan -->
+        <!-- A Gyakorló Mód felülete (alapból rejtett) -->
+        <div id="practice-mode" class="hidden">
+            <h2>Gyakorló Mód</h2>
+            <p id="question-text">Mi a helyes lépés...?</p>
+            <div id="answer-buttons">
+                <button class="answer-btn" data-action="All-in">All-in</button>
+                <button class="answer-btn" data-action="Raise">Emelés (2bb)</button>
+                <button class="answer-btn" data-action="Fold">Dobás</button>
+            </div>
+            <p id="feedback-text"></p>
+            <div id="score-display">Helyes: 0 / 0</div>
+            <button id="next-question-btn" class="hidden">Következő Kérdés</button>
+            <button id="exit-practice-btn" class="secondary-btn">Kilépés a gyakorlásból</button>
         </div>
+
 
         <div class="legend">
             <div class="legend-item"><span class="color-box all-in"></span>All-in</div>
