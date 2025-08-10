@@ -13,18 +13,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const colors = { 'All-in': '#8b0000', 'Raise': '#f08080', 'Fold': '#add8e6' };
     const actionOrder = ['All-in', 'Raise', 'Fold'];
 
-    // --- ÚJ FUNKCIÓ: A bevitel normalizálása ---
+    // --- VÉGLEGES JAVÍTOTT FUNKCIÓ: A bevitel normalizálása ---
     function normalizeHandInput(handStr) {
         if (!handStr || handStr.length < 2 || handStr.length > 3) {
-            return handStr; // Visszaadja az eredetit, ha a formátum nem stimmel
+            return handStr; // Nem próbáljuk normalizálni, ha a hossz nem stimmel
         }
-        if (handStr.length === 2) {
-            return handStr.toUpperCase(); // Pl. '88'
+
+        const rankOrder = '23456789TJQKA';
+        let rank1 = handStr[0].toUpperCase();
+        let rank2 = handStr[1].toUpperCase();
+
+        // Ha a rankok nincsenek a helyes sorrendben (pl. 'qko'), megcseréljük őket
+        if (rankOrder.indexOf(rank1) < rankOrder.indexOf(rank2)) {
+            [rank1, rank2] = [rank2, rank1]; // Csere
         }
-        // Pl. 'kqo' -> 'KQo' vagy 'aJs' -> 'AJs'
-        const ranks = handStr.substring(0, 2).toUpperCase();
-        const suit = handStr.substring(2).toLowerCase();
-        return ranks + suit;
+
+        // Ha pár, pl. 'aa' -> 'AA'
+        if (rank1 === rank2) {
+            return rank1 + rank2;
+        }
+
+        // Ha suited vagy offsuit, pl. 'kqs' -> 'KQs' vagy 'kqo' -> 'KQo'
+        if (handStr.length === 3) {
+            const suitInfo = handStr[2].toLowerCase();
+            if (suitInfo === 's' || suitInfo === 'o') {
+                return rank1 + rank2 + suitInfo;
+            }
+        }
+        
+        // Ha semelyik formátum nem illik, visszaadjuk az eredetit, hogy a hibakezelés elkapja
+        return handStr;
     }
 
     // Adatbázis betöltése
@@ -90,12 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
         inputFields.forEach(input => {
             const rawHand = input.value.trim();
             if (rawHand) {
-                // --- JAVÍTÁS: A normalizáló funkció használata ---
+                // A javított normalizáló funkció használata
                 const normalizedHand = normalizeHandInput(rawHand);
                 if (masterStrategyData[normalizedHand]) {
                     handsToChart.add(normalizedHand);
                 } else {
-                    console.warn(`A(z) '${rawHand}' kéz nem található az adatbázisban, kihagyva.`);
+                    console.warn(`A(z) '${rawHand}' -> '${normalizedHand}' kéz nem található az adatbázisban, kihagyva.`);
                 }
             }
         });
