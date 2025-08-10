@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- ÁLLAPOTVÁLTOZÓK ---
     let masterStrategyData = {};
     let currentHandsInChart = [];
     let currentQuestion = {};
     let score = { correct: 0, total: 0 };
 
-    // --- DOM ELEMEK ---
     const generateBtn = document.getElementById('generate-btn');
     const practiceBtn = document.getElementById('practice-btn');
     const chartContainer = document.getElementById('chart-container');
@@ -20,29 +18,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextQuestionBtn = document.getElementById('next-question-btn');
     const exitPracticeBtn = document.getElementById('exit-practice-btn');
 
-    // --- KONSTANS ADATOK ---
     const positions = ['UTG', 'UTG+1', 'LJ', 'HJ', 'CO', 'BU'];
     const colors = { 'All-in': '#8b0000', 'Raise': '#f08080', 'Fold': '#add8e6' };
     const actionOrder = ['All-in', 'Raise', 'Fold'];
 
-    // --- INICIALIZÁLÁS ---
+    // Gombok letiltása, amíg az adatbázis be nem töltődik
     generateBtn.disabled = true;
     generateBtn.textContent = 'Adatbázis betöltése...';
+    practiceBtn.disabled = true;
 
     fetch('strategy_database.json')
         .then(response => response.ok ? response.json() : Promise.reject('Network response was not ok'))
         .then(data => {
             masterStrategyData = data;
+            // JAVÍTÁS: Mindkét gomb engedélyezése a sikeres betöltés után
             generateBtn.disabled = false;
             generateBtn.textContent = 'Ábra generálása';
+            practiceBtn.disabled = false;
         })
         .catch(error => {
             console.error('Error loading database:', error);
             chartContainer.innerHTML = `<p style="color: #f04747; text-align: center;">HIBA: Az adatbázis ('strategy_database.json') nem tölthető be.</p>`;
             generateBtn.textContent = 'Hiba az adatbázisban';
+            practiceBtn.textContent = 'Hiba';
         });
 
-    // --- FUNKCIÓK ---
     function normalizeHandInput(handStr) {
         if (!handStr || handStr.length < 2 || handStr.length > 3) return handStr;
         const rankOrder = '23456789TJQKA';
@@ -58,8 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateChart(hands) {
-        currentHandsInChart = hands; // Elmentjük a kezeket a gyakorláshoz
-        practiceBtn.disabled = hands.length === 0; // Gyakorlás gomb aktiválása/deaktiválása
+        currentHandsInChart = hands;
         chartContainer.innerHTML = '';
         if (hands.length === 0) return;
 
@@ -100,10 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function startPractice() {
-        if (currentHandsInChart.length === 0) {
-            alert("Kérlek, először generálj egy ábrát a gyakorláshoz!");
-            return;
-        }
         mainContent.classList.add('hidden');
         practiceModeDiv.classList.remove('hidden');
         score = { correct: 0, total: 0 };
@@ -117,7 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function generateNewQuestion() {
-        const randomHand = currentHandsInChart[Math.floor(Math.random() * currentHandsInChart.length)];
+        // JAVÍTÁS: A kérdések forrásának meghatározása
+        const handsToPracticeFrom = currentHandsInChart.length > 0 ? currentHandsInChart : Object.keys(masterStrategyData);
+        
+        const randomHand = handsToPracticeFrom[Math.floor(Math.random() * handsToPracticeFrom.length)];
         const randomPosition = positions[Math.floor(Math.random() * positions.length)];
         currentQuestion = { hand: randomHand, position: randomPosition };
 
@@ -136,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const correctActions = [];
         let feedbackString = 'A helyes lépés(ek): ';
         freqs.forEach((freq, index) => {
-            if (freq > 0) {
+            if (freq > 0.001) { // Kis kerekítési hibák kiszűrése
                 const action = actionOrder[index];
                 correctActions.push(action);
                 feedbackString += `${action} (${Math.round(freq*100)}%), `;
@@ -162,7 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         scoreDisplay.textContent = `Helyes: ${score.correct} / ${score.total}`;
     }
 
-    // --- ESEMÉNYKEZELŐK ---
     generateBtn.addEventListener('click', () => {
         const handsToChart = new Set();
         inputFields.forEach(input => {
@@ -176,10 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-        if (handsToChart.size === 0) {
-            alert("Kérlek, adj meg legalább egy érvényes kezet!");
-            return;
-        }
+        // Az üres generálás is törli a táblát, de a gyakorlás gomb aktív marad
         generateChart(Array.from(handsToChart));
     });
 
