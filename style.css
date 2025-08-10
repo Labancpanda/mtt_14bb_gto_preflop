@@ -81,15 +81,14 @@ button {
 .secondary-btn {
     background-color: #7289da;
 }
-.secondary-btn:hover {
+.secondary-btn:hover:not(:disabled) {
     background-color: #677bc4;
 }
-.secondary-btn:disabled {
+.secondary-btn:disabled, #generate-btn:disabled {
     background-color: #5c6168;
     cursor: not-allowed;
     opacity: 0.6;
 }
-
 
 #chart-container {
     display: grid;
@@ -123,57 +122,27 @@ button {
 .fold { background-color: #add8e6; }
 
 /* Gyakorló mód stílusok */
-#practice-mode {
-    padding: 20px;
-    border: 2px solid #4f545c;
-    border-radius: 8px;
-    text-align: center;
-}
-#question-text {
-    font-size: 1.2em;
-    margin-bottom: 20px;
-}
-#question-text strong {
-    color: #7289da;
-}
-#answer-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
+#practice-mode { padding: 20px; border: 2px solid #4f545c; border-radius: 8px; text-align: center; }
+#question-text { font-size: 1.2em; margin-bottom: 20px; }
+#question-text strong { color: #7289da; }
+#answer-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+
+/* JAVÍTÁS: A válasz gombok háttérszíne */
 .answer-btn {
     font-size: 1em;
     width: 140px;
+    background-color: #4f545c;
+    border: 1px solid #7289da;
 }
-.answer-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+.answer-btn:hover:not(:disabled) {
+    background-color: #5c6168;
 }
+.answer-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-#feedback-text {
-    font-size: 1.1em;
-    font-weight: bold;
-    min-height: 25px;
-}
+#feedback-text { font-size: 1.1em; font-weight: bold; min-height: 25px; }
 .feedback-correct { color: #43b581; }
 .feedback-incorrect { color: #f04747; }
-
-#score-display {
-    margin-top: 15px;
-    font-size: 1.1em;
-    color: #99aab5;
-}
-
-#next-question-btn {
-    background-color: #43b581;
-    margin-top: 10px;
-}
-#exit-practice-btn {
-    margin-top: 15px;
-    background-color: #f04747;
-}
-
-.hidden {
-    display: none !important;
-}
+#score-display { margin-top: 15px; font-size: 1.1em; color: #99aab5; }
+#next-question-btn { background-color: #43b581; margin-top: 10px; }
+#exit-practice-btn { margin-top: 15px; background-color: #f04747; }
+.hidden { display: none !important; }
