@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>14bb GTO Preflop Stratégia Elemző</title>
+    <title>14bb GTO Stratégia Elemző</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,16 +12,24 @@
 <body>
     <div class="container">
         <h1>14bb GTO Stratégia Elemző</h1>
-        <p class="subtitle">Add meg a kezeket (pl. KQs, 88, AJo), amiket elemezni szeretnél.</p>
+        <p class="subtitle">Írd be a kezeket a mezőkbe (pl. KQs, 88, AJo), majd generáld az ábrát.</p>
 
-        <div class="input-section">
-            <input type="text" id="hand-input" placeholder="Írj be egy kezet...">
-            <button id="add-hand-btn">Hozzáad</button>
-            <button id="reset-btn">Törlés</button>
+        <div class="input-grid">
+            <!-- 10 beviteli mező -->
+            <input type="text" class="hand-input-field" placeholder="Kéz 1">
+            <input type="text" class="hand-input-field" placeholder="Kéz 2">
+            <input type="text" class="hand-input-field" placeholder="Kéz 3">
+            <input type="text" class="hand-input-field" placeholder="Kéz 4">
+            <input type="text" class="hand-input-field" placeholder="Kéz 5">
+            <input type="text" class="hand-input-field" placeholder="Kéz 6">
+            <input type="text" class="hand-input-field" placeholder="Kéz 7">
+            <input type="text" class="hand-input-field" placeholder="Kéz 8">
+            <input type="text" class="hand-input-field" placeholder="Kéz 9">
+            <input type="text" class="hand-input-field" placeholder="Kéz 10">
         </div>
         
-        <div id="selected-hands-container">
-            <!-- A kiválasztott kezek itt jelennek meg -->
+        <div class="action-section">
+            <button id="generate-btn">Ábra generálása</button>
         </div>
 
         <div id="chart-container">
