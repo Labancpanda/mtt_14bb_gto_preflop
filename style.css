@@ -121,13 +121,13 @@ button {
 .raise { background-color: #f08080; }
 .fold { background-color: #add8e6; }
 
-/* Gyakorló mód stílusok */
+/* Practice mode styles */
 #practice-mode { padding: 20px; border: 2px solid #4f545c; border-radius: 8px; text-align: center; }
 #question-text { font-size: 1.2em; margin-bottom: 20px; }
 #question-text strong { color: #7289da; }
 #answer-buttons { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
 
-/* JAVÍTÁS: A válasz gombok háttérszíne */
+/* FIX: Answer button background color */
 .answer-btn {
     font-size: 1em;
     width: 140px;
