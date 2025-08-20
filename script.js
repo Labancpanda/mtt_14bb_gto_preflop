@@ -142,12 +142,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         score.total++;
+        const solutionText = feedbackString.slice(0, -2);
         if (correctActions.includes(userAnswer)) {
             score.correct++;
-            feedbackText.textContent = 'Helyes!';
+            feedbackText.textContent = 'Helyes! ' + solutionText;
             feedbackText.className = 'feedback-correct';
         } else {
-            feedbackText.textContent = 'Helytelen. ' + feedbackString.slice(0, -2);
+            feedbackText.textContent = 'Helytelen. ' + solutionText;
             feedbackText.className = 'feedback-incorrect';
         }
         
@@ -180,6 +181,13 @@ document.addEventListener('DOMContentLoaded', () => {
     practiceBtn.addEventListener('click', startPractice);
     exitPracticeBtn.addEventListener('click', exitPractice);
     nextQuestionBtn.addEventListener('click', generateNewQuestion);
+    document.addEventListener('keydown', (event) => {
+        if (!practiceModeDiv.classList.contains('hidden') &&
+            !nextQuestionBtn.classList.contains('hidden') &&
+            event.key.toLowerCase() === 'n') {
+            generateNewQuestion();
+        }
+    });
     answerButtonsContainer.addEventListener('click', (event) => {
         if (event.target.classList.contains('answer-btn')) {
             checkAnswer(event.target.dataset.action);
