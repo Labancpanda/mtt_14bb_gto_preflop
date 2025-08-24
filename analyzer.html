@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTO Strategy Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div id="main-content">
+            <h1 id="stack-title">GTO Strategy Analyzer</h1>
+            <p class="subtitle">Enter the hands into the fields, then generate the chart to study.</p>
+
+            <div class="input-grid">
+                <!-- 12 input fields -->
+                <input type="text" class="hand-input-field" placeholder="Hand 1">
+                <input type="text" class="hand-input-field" placeholder="Hand 2">
+                <input type="text" class="hand-input-field" placeholder="Hand 3">
+                <input type="text" class="hand-input-field" placeholder="Hand 4">
+                <input type="text" class="hand-input-field" placeholder="Hand 5">
+                <input type="text" class="hand-input-field" placeholder="Hand 6">
+                <input type="text" class="hand-input-field" placeholder="Hand 7">
+                <input type="text" class="hand-input-field" placeholder="Hand 8">
+                <input type="text" class="hand-input-field" placeholder="Hand 9">
+                <input type="text" class="hand-input-field" placeholder="Hand 10">
+                <input type="text" class="hand-input-field" placeholder="Hand 11">
+                <input type="text" class="hand-input-field" placeholder="Hand 12">
+            </div>
+            
+            <div class="action-section">
+                <button id="generate-btn">Generate Chart</button>
+                <button id="practice-btn" class="secondary-btn" disabled>Practice</button>
+            </div>
+
+            <div id="chart-container"></div>
+        </div>
+
+        <!-- Practice Mode interface (hidden by default) -->
+        <div id="practice-mode" class="hidden">
+            <h2>Practice Mode</h2>
+            <p id="question-text">What is the correct action...?</p>
+            <div id="answer-buttons">
+                <button class="answer-btn" data-action="All-in">All-in</button>
+                <button class="answer-btn" data-action="Raise">Raise (2bb)</button>
+                <button class="answer-btn" data-action="Fold">Fold</button>
+            </div>
+            <p id="feedback-text"></p>
+            <div id="score-display">Correct: 0 / 0</div>
+            <button id="next-question-btn" class="hidden">Next Question (N)</button>
+            <button id="exit-practice-btn" class="secondary-btn">Exit Practice</button>
+        </div>
+
+
+        <div class="legend">
+            <div class="legend-item"><span class="color-box all-in"></span>All-in</div>
+            <div class="legend-item"><span class="color-box raise"></span>Raise (2bb)</div>
+            <div class="legend-item"><span class="color-box fold"></span>Fold</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
