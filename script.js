@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const stack = params.get('stack') || '14';
+    document.title = `${stack}bb GTO Strategy Analyzer`;
+    const stackTitle = document.getElementById('stack-title');
+    if (stackTitle) stackTitle.textContent = `${stack}bb GTO Strategy Analyzer`;
+
     let masterStrategyData = {};
     let currentHandsInChart = [];
     let currentQuestion = {};
@@ -27,7 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     generateBtn.textContent = 'Loading database...';
     practiceBtn.disabled = true;
 
-    fetch('strategy_database.json')
+    const databaseFile = `strategy_${stack}bb_database.json`;
+    fetch(databaseFile)
         .then(response => response.ok ? response.json() : Promise.reject('Network response was not ok'))
         .then(data => {
             masterStrategyData = data;
@@ -38,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(error => {
             console.error('Error loading database:', error);
-            chartContainer.innerHTML = `<p style="color: #f04747; text-align: center;">ERROR: The database ('strategy_database.json') cannot be loaded.</p>`;
+            chartContainer.innerHTML = `<p style="color: #f04747; text-align: center;">ERROR: The database ('${databaseFile}') cannot be loaded.</p>`;
             generateBtn.textContent = 'Database error';
             practiceBtn.textContent = 'Error';
         });
